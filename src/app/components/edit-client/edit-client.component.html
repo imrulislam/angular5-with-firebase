@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="margin-bottom pull-right">
+      <a href="" [routerLink]="['/client/' + id]" class="btn btn-link">
+        <i class="fa fa-arrow-left"></i> Back to Details</a>
+    </div>
+  </div>
+</div>
+<div class="card margin-bottom">
+  <div class="card-header">
+    Edit Client
+  </div>
+  <div class="card-body">
+    <form novalidate #clientEditForm="ngForm" (ngSubmit)="onsubmit(clientEditForm)">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="client.name" #clientName="ngModel" minlength="3"
+          required aria-describedby="Name" placeholder="Enter Name">
+        <div *ngIf="clientName.errors?.required && clientName.touched" class="alert alert-danger">
+          Name is Required.
+        </div>
+        <div *ngIf="clientName.errors?.minlength && clientName.touched" class="alert alert-danger">
+          Name Must be at least 3 characters.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" id="email" [(ngModel)]="client.email" #clientEmail="ngModel" minlength="3"
+          required aria-describedby="Email" placeholder="Enter email">
+        <div *ngIf="clientEmail.errors?.required && clientEmail.touched" class="alert alert-danger">
+          Eamil is Required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" class="form-control" id="phone" [(ngModel)]="client.phone" #clientPhone="ngModel" minlength="10"
+          aria-describedby="Phone" placeholder="Enter Phone" required>
+
+        <div *ngIf="clientPhone.errors?.minlength && clientPhone.touched" class="alert alert-danger">
+          Add a valid phone number
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="balance">Balance</label>
+        <input type="number" name="balance" class="form-control" id="balance" [(ngModel)]="client.balance" #clientBalance="ngModel"
+          minlength="3" aria-describedby="Balance" [disabled]="disableBalanceOnEdit">
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</div>

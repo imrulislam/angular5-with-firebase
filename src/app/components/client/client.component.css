@@ -1,0 +1,7 @@
+.thead-inverse{
+    background: #464646;
+    color: #fff;
+}
+.table thead th{
+    border-bottom: 1px solid #dcdcdc;
+}

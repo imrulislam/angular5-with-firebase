@@ -1,0 +1,67 @@
+<div class="row justify-content-md-center margin-bottom-24">
+  <div class="col-md-4">
+    <div>
+      <a href="" routerLink="/" class="btn btn-link">
+        <i class="fa fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="pull-right btn-group">
+      <a [routerLink]="['/edit-client/' + id]" class="btn btn-secondary">Edit</a>
+      <button type="button" class="btn btn-danger" (click)="onDeleteClick()"> Delete </button>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-md-center" *ngIf="client">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        {{client.name}}
+        <p class="margin-0 padding-0 pull-right primary text-bold">
+          <span style="margin-right:10px" [class.text-danger]="hasBalance" [class.text-success]="!hasBalance">{{client.balance | currency: "USD":true}}</span>
+          <small> <a class="cursor-pointer" (click)="showBalanceUpdateInput = !showBalanceUpdateInput"><i class="fa fa-pencil"></i></a> </small>
+        </p>
+        <div class="clearfix" *ngIf="showBalanceUpdateInput">
+            <hr>
+          <form (submit)="updateBalance(id)">
+            <div class="form-group">
+              <input type="text" [(ngModel)]="client.balance" name="balance" class="form-control">
+            </div>
+            <button class="btn btn-primary pull-right" type="submit">Update</button>
+          </form>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row margin-bottom-24">
+          <div class="col-md-6" *ngIf="client.company">
+            <h5 class="margin-0 padding-0">Company Name:</h5>
+            <p class="margin-0 padding-0">
+              {{client.company}}
+            </p>
+          </div>
+          <div class="col-md-6" *ngIf="client.email">
+            <h5 class="margin-0 padding-0">Email:</h5>
+            <p class="margin-0 padding-0">
+              {{client.email}}
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" *ngIf="client.phone">
+            <h5 class="margin-0 padding-0">Phone:</h5>
+            <p class="margin-0 padding-0">
+              {{client.phone}}
+            </p>
+          </div>
+          <div class="col-md-6" *ngIf="client.age">
+            <h5 class="margin-0 padding-0">Age:</h5>
+            <p class="margin-0 padding-0">
+              {{client.age}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
